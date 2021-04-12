@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 
 interface Book {
   title: string;
@@ -14,11 +14,27 @@ interface Book {
   year: number;
 }
 
+// export interface User {
+//   firstName: string;
+//   lastName: string;
+//   age: number;
+// }
+
 export default defineComponent({
   name: "HelloWorld",
+
   props: {
-    msg: String,
-    price: Number,
+    msg: {
+      type: String as PropType<string>,
+      required: true,
+    },
+    price: {
+      type: Number as PropType<number>,
+      required: false,
+    },
+    // user: {
+    //   type: Object as PropType<User>,
+    // },
   },
   data() {
     return {
@@ -27,8 +43,17 @@ export default defineComponent({
         author: "Vue Team",
         year: 2020,
       } as Book,
+      //   firstName: "",
+      //   lasttName: "",
+      //   age: "",
+      // } as User,
     };
   },
+  // computed: {
+  //   fullName(): string {
+  //     return this.user.firstName + "" + this.user.firstName;
+  //   },
+  // },
   methods: {
     changeYear() {
       this.book.year = 1000;
@@ -40,6 +65,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .hello {
+  text-align: center;
   h1 {
     margin: 40px 0 0;
     color: tomato;
